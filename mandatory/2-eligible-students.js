@@ -20,6 +20,13 @@
  */
 
 function eligibleStudents(attendances) {
+  return attendances
+    .filter((attendee) => {
+      return attendee.attendance >= 8;
+    })
+    .map((attendee) => {
+      return attendee.name;
+    });
    
 }
 

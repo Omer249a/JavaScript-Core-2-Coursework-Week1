@@ -382,8 +382,9 @@ First, I want you to find all of my friends who are 35 or older.
 
 */
 
-let thirtyFiveOrOlder = [];
-
+let thirtyFiveOrOlder = friends.filter((friend) => {
+  return friend.age >= 35;
+});
 /*
 3) Find the email address
 
@@ -391,7 +392,13 @@ Next, I want you to find all of my friends who work for "POWERNET" and then stor
 
 */
 
-let powerNetEmails = [];
+let powerNetEmails = friends
+  .filter((friend) => {
+    return friend.company === "POWERNET";
+  })
+  .map((friend) => {
+    return friend.email;
+  });
 
 /*
 
@@ -405,7 +412,15 @@ This time, I only want the full names ("<firstname> <lastname>") of my friends w
 
 */
 
-let friendsWhoAreColleaguesOfStacie = [];
+let friendsWhoAreColleaguesOfStacie = friends
+  .filter((friend) => {
+    return friend.colleagues.some(
+      (friend) => friend.name === "Stacie Villarreal"
+    );
+  })
+  .map((friend) => {
+    return `${friend.name.first} ${friend.name.last}`;
+  });
 /*
 
 5) Find "Multi-tasking" colleagues
@@ -418,7 +433,15 @@ This time, I only want the full names of the people who can multitask
 
 */
 
-let colleaguesWhoCanMultitask = [];
+const colleaguesWhoCanMultitask = [];
+
+friends.forEach((friend) => {
+  friend.colleagues.forEach((colleague) => {
+    if (colleague.skills.includes("Multi-tasking")) {
+      colleaguesWhoCanMultitask.push(colleague.name);
+    }
+  });
+});
 
 /* ======= TESTS - DO NOT MODIFY ===== 
 - To run the tests for this exercise, run `npm test -- --testPathPattern 6-people-I-know.js`

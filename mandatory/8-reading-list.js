@@ -24,12 +24,48 @@ without using any variables or any logic like loops, template strings or if stat
 
 */
 
-const books = [];
+const books = [
+  {
+    title: "The Hobbit",
+    author: "J.R.R. Tolkien",
+    read: true,
+  },
+
+  {
+    title: "The Coder",
+    author: "Mr Code",
+    read: true,
+  },
+
+  {
+    title: "Hacker 1",
+    author: "J Hack",
+    read: false,
+  },
+
+  {
+    title: "Web Dev 101",
+    author: "CYF",
+    read: false,
+  },
+
+  {
+    title: "Linux Bible",
+    author: "Linus",
+    read: true,
+  },
+];
   
 // exercise 1
-function logBooks() {
+function logBooks() {books.forEach((book) => {
+  if (book.read) {
+    console.log(`You've already read "${book.title}" by ${book.author}`);
+  } else {
+    console.log(`You still need to read "${book.title}" by ${book.author}`);
+  }
+});
 }
-  
+  logBooks(books);
 
 /*
 
@@ -67,14 +103,14 @@ As an example for this exercise, you might do the following steps
 - (Reminder: You must have run `npm install` one time before this will work!)
 */
 
-test("books are logged", function() {
- expectLogBooksToLog([
-        "The Hobbit by J.R.R. Tolkien",
-        "The Map of Salt and Stars by Jennifer Zeynab Joukhadar",
-        "Dietland by Sarai Walker",
-        "A Place for Us by Fatima Farheen Mirza",
-        "The House of Impossible Beauties by Joseph Cassara"
-    ]);
+test("books are logged", function () {
+  expectLogBooksToLog([
+    `You've already read "The Hobbit" by J.R.R. Tolkien`,
+    `You've already read "The Coder" by Mr Code`,
+    `You still need to read "Hacker 1" by J Hack`,
+    `You still need to read "Web Dev 101" by CYF`,
+    `You've already read "Linux Bible" by Linus`,
+  ]);
 });
 
 /* ======= TESTS - DO NOT MODIFY ===== */
